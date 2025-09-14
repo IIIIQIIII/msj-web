@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSJ - Homepage</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="shortcut icon" href="favicon-16.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* MSJ 容器 */
+        .msj-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            gap: 30px;
+        }
+
+        /* MSJ 字母样式 */
+        .msj-letter {
+            font-size: 12rem;
+            font-weight: 900;
+            color: transparent;
+            background: linear-gradient(135deg, 
+                #ff0000 0%, 
+                #ff6b6b 25%, 
+                #ffffff 50%, 
+                #6bb6ff 75%, 
+                #0000ff 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            text-shadow: 
+                0 0 20px rgba(255, 0, 0, 0.5),
+                0 0 40px rgba(0, 0, 255, 0.5);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        /* 玻璃态效果 */
+        .glass-effect {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(255, 0, 0, 0.05) 25%, 
+                rgba(0, 0, 255, 0.05) 75%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 8px 32px rgba(255, 0, 0, 0.2),
+                0 8px 32px rgba(0, 0, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .msj-letter:hover .glass-effect {
+            opacity: 1;
+        }
+
+        .msj-letter:hover {
+            transform: scale(1.05);
+            text-shadow: 
+                0 0 30px rgba(255, 0, 0, 0.7),
+                0 0 60px rgba(0, 0, 255, 0.7);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .msj-letter {
+                font-size: 8rem;
+            }
+            .msj-container {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .msj-letter {
+                font-size: 5rem;
+            }
+            .msj-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* OPEN 按钮样式 */
+        /* Language switcher */
+        .language-switcher {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            z-index: 20;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .lang-btn.active:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .open-button-container {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+        }
+
+        .open-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #000;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 8px 32px rgba(255, 255, 255, 0.1),
+                0 4px 16px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+        }
+
+        .open-button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 12px 40px rgba(255, 255, 255, 0.2),
+                0 6px 20px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        .open-button:active {
+            transform: translateY(0);
+            box-shadow: 
+                0 4px 16px rgba(255, 255, 255, 0.1),
+                0 2px 8px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        /* 响应式按钮 */
+        @media (max-width: 768px) {
+            .open-button {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+            .open-button-container {
+                bottom: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                margin: 0 3px;
+            }
+            .language-switcher {
+                top: 20px;
+                right: 20px;
+            }
+            .open-button {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+            .open-button-container {
+                bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- MSJ 字母 -->
+    <div class="msj-container">
+        <div class="msj-letter">
+            M
+            <div class="glass-effect"></div>
+        </div>
+        <div class="msj-letter">
+            S
+            <div class="glass-effect"></div>
+        </div>
+        <div class="msj-letter">
+            J
+            <div class="glass-effect"></div>
+        </div>
+    </div>
+
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="switchLanguage('zh')">中文</button>
+    </div>
+
+    <!-- OPEN 按钮 -->
+    <div class="open-button-container">
+        <a href="function.html" class="open-button">
+            <span data-lang="en">OPEN</span>
+            <span data-lang="zh" style="display: none;">打开</span>
+        </a>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                element.style.display = element.getAttribute('data-lang') === lang ? 'inline' : 'none';
+            });
+            
+            // Store language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+        
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            const langButtons = document.querySelectorAll('.lang-btn');
+            
+            langButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if ((btn.textContent === 'EN' && savedLang === 'en') || 
+                    (btn.textContent === '中文' && savedLang === 'zh')) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            document.documentElement.lang = savedLang === 'zh' ? 'zh-CN' : 'en';
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                element.style.display = element.getAttribute('data-lang') === savedLang ? 'inline' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

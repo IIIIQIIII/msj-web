@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function - MSJ</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="shortcut icon" href="favicon-16.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* 返回首页按钮样式 */
+        /* Language switcher */
+        .language-switcher {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            z-index: 20;
+        }
+
+        .lang-btn {
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            color: #000;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .lang-btn.active {
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+        }
+
+        .lang-btn:hover {
+            background: rgba(0, 0, 0, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .lang-btn.active:hover {
+            background: rgba(0, 0, 0, 1);
+        }
+
+        .return-button-container {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            z-index: 20;
+        }
+
+        .return-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            box-shadow: 
+                0 4px 16px rgba(0, 0, 0, 0.1),
+                0 2px 8px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .return-button:hover {
+            background: rgba(0, 0, 0, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.2),
+                0 3px 12px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .return-button:active {
+            transform: translateY(0);
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.1),
+                0 1px 4px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* 功能区标题 */
+        .function-title {
+            font-size: 3rem;
+            font-weight: 300;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+
+        /* 功能区描述 */
+        .function-description {
+            font-size: 1.2rem;
+            color: #666;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.6;
+            opacity: 0.5;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .return-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            .return-button-container {
+                top: 30px;
+                left: 30px;
+            }
+            .function-title {
+                font-size: 2.5rem;
+            }
+            .function-description {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                margin: 0 3px;
+            }
+            .language-switcher {
+                top: 20px;
+                right: 20px;
+            }
+            .return-button {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+            .return-button-container {
+                top: 20px;
+                left: 20px;
+            }
+            .function-title {
+                font-size: 2rem;
+            }
+            .function-description {
+                font-size: 0.9rem;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="switchLanguage('zh')">中文</button>
+    </div>
+
+    <!-- 返回首页按钮 -->
+    <div class="return-button-container">
+        <a href="index.html" class="return-button">
+            <span data-lang="en">Back to Home</span>
+            <span data-lang="zh" style="display: none;">返回首页</span>
+        </a>
+    </div>
+
+    <!-- 功能区内容 -->
+    <div class="function-content">
+        <h1 class="function-title">
+            <span data-lang="en">Function Area</span>
+            <span data-lang="zh" style="display: none;">功能区</span>
+        </h1>
+        <p class="function-description">
+            <span data-lang="en">This is the function area, currently a blank page waiting for future feature development...</span>
+            <span data-lang="zh" style="display: none;">这里是功能区，目前为纯白页面，等待后续功能开发...</span>
+        </p>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                element.style.display = element.getAttribute('data-lang') === lang ? 'inline' : 'none';
+            });
+            
+            // Store language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+        
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            const langButtons = document.querySelectorAll('.lang-btn');
+            
+            langButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if ((btn.textContent === 'EN' && savedLang === 'en') || 
+                    (btn.textContent === '中文' && savedLang === 'zh')) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            document.documentElement.lang = savedLang === 'zh' ? 'zh-CN' : 'en';
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                element.style.display = element.getAttribute('data-lang') === savedLang ? 'inline' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
