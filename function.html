@@ -126,6 +126,120 @@
             opacity: 0.5;
         }
 
+        /* 项目展示区 */
+        .projects-showcase {
+            margin-top: 60px;
+            padding: 0 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            list-style: none;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.06),
+                0 2px 8px rgba(0, 0, 0, 0.03),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 280px;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.05) 0%, rgba(0, 0, 255, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 20px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                0 8px 16px rgba(0, 0, 0, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ff0000 0%, #ff6b6b 25%, #ffffff 50%, #6bb6ff 75%, #0000ff 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .project-subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: #007AFF;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            align-self: flex-start;
+        }
+
+        .project-link:hover {
+            color: #0051D5;
+            transform: translateX(3px);
+        }
+
+        .project-link::after {
+            content: '→';
+            margin-left: 6px;
+            transition: transform 0.2s ease;
+        }
+
+        .project-link:hover::after {
+            transform: translateX(3px);
+        }
+
         /* 响应式设计 */
         @media (max-width: 768px) {
             .return-button {
@@ -142,6 +256,21 @@
             .function-description {
                 font-size: 1rem;
                 padding: 0 20px;
+            }
+            .projects-showcase {
+                margin-top: 40px;
+                padding: 0 15px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .project-card {
+                padding: 25px;
+                min-height: 250px;
+            }
+            .project-title {
+                font-size: 1.6rem;
             }
         }
 
@@ -170,6 +299,20 @@
                 font-size: 0.9rem;
                 padding: 0 20px;
             }
+            .projects-showcase {
+                margin-top: 30px;
+                padding: 0 10px;
+            }
+            .project-card {
+                padding: 20px;
+                min-height: 220px;
+            }
+            .project-icon {
+                font-size: 2.5rem;
+            }
+            .project-title {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
@@ -191,13 +334,37 @@
     <!-- 功能区内容 -->
     <div class="function-content">
         <h1 class="function-title">
-            <span data-lang="en">Function Area</span>
-            <span data-lang="zh" style="display: none;">功能区</span>
+            <span data-lang="en">My Projects</span>
+            <span data-lang="zh" style="display: none;">我的项目</span>
         </h1>
         <p class="function-description">
-            <span data-lang="en">This is the function area, currently a blank page waiting for future feature development...</span>
-            <span data-lang="zh" style="display: none;">这里是功能区，目前为纯白页面，等待后续功能开发...</span>
+            <span data-lang="en">A showcase of my creative and technical projects.</span>
+            <span data-lang="zh" style="display: none;">我的创意与技术项目展示。</span>
         </p>
+
+        <!-- 项目展示区 -->
+        <div class="projects-showcase">
+            <ul class="projects-grid">
+                <!-- AI 创作工坊项目卡片 -->
+                <li class="project-card" onclick="window.open('https://create.mashijian.com', '_blank')">
+                    <div>
+                        <div class="project-icon">🎨</div>
+                        <h2 class="project-title">
+                            <span data-lang="en">AI Creative Workshop</span>
+                            <span data-lang="zh" style="display: none;">AI 创作工坊</span>
+                        </h2>
+                        <p class="project-subtitle">
+                            <span data-lang="en">A multi-modal AI creation platform based on Google Gemini 2.5 Flash and Veo AI.</span>
+                            <span data-lang="zh" style="display: none;">基于 Google Gemini 2.5 Flash 和 Veo AI 的现代化多模态创作平台。</span>
+                        </p>
+                    </div>
+                    <a href="https://create.mashijian.com" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                        <span data-lang="en">View Project</span>
+                        <span data-lang="zh" style="display: none;">查看项目</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <script>
