@@ -17,12 +17,13 @@
         body {
             font-family: 'Arial', sans-serif;
             background: #ffffff;
-            overflow: hidden;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
             position: relative;
+            padding: 20px;
         }
 
         /* 返回首页按钮样式 */
@@ -359,6 +360,25 @@
                         </p>
                     </div>
                     <a href="https://create.mashijian.com" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                        <span data-lang="en">View Project</span>
+                        <span data-lang="zh" style="display: none;">查看项目</span>
+                </a>
+            </li>
+
+                <!-- Short Studio 项目卡片 -->
+                <li class="project-card" onclick="window.open('https://short.mashijian.com', '_blank')">
+                    <div>
+                        <div class="project-icon">🎬</div>
+                        <h2 class="project-title">
+                            <span data-lang="en">Short Studio</span>
+                            <span data-lang="zh" style="display: none;">Short Studio</span>
+                        </h2>
+                        <p class="project-subtitle">
+                            <span data-lang="en">Create compelling short dramas with professional tools</span>
+                            <span data-lang="zh" style="display: none;">使用专业工具创建引人入胜的短剧</span>
+                        </p>
+                    </div>
+                    <a href="https://short.mashijian.com" target="_blank" class="project-link" onclick="event.stopPropagation()">
                         <span data-lang="en">View Project</span>
                         <span data-lang="zh" style="display: none;">查看项目</span>
                     </a>
