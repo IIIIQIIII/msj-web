@@ -3,10 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MSJ - Homepage</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Home - MSJ</title>
+    <meta name="title" content="MASHIJIAN - 马诗剑 | Personal Portfolio & Projects">
+    <meta name="description" content="Welcome to MASHIJIAN's (马诗剑) personal website. Explore innovative projects including personal blog and Short Studio - professional tools for creating compelling short dramas.">
+    <meta name="keywords" content="MASHIJIAN, 马诗剑, portfolio, blog, short studio, web development, creative projects, software engineer">
+    <meta name="author" content="MASHIJIAN (马诗剑)">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English, Chinese">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mashijian.com/">
+    <meta property="og:title" content="MASHIJIAN - 马诗剑 | Personal Portfolio & Projects">
+    <meta property="og:description" content="Welcome to MASHIJIAN's (马诗剑) personal website. Explore innovative projects including personal blog and Short Studio.">
+    <meta property="og:image" content="https://mashijian.com/og-image.png">
+    <meta property="og:site_name" content="MASHIJIAN">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="zh_CN">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://mashijian.com/">
+    <meta name="twitter:title" content="MASHIJIAN - 马诗剑 | Personal Portfolio & Projects">
+    <meta name="twitter:description" content="Welcome to MASHIJIAN's (马诗剑) personal website. Explore innovative projects including personal blog and Short Studio.">
+    <meta name="twitter:image" content="https://mashijian.com/twitter-image.png">
+    <meta name="twitter:creator" content="@mashijiann">
+    <meta name="twitter:site" content="@mashijiann">
+    
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://mashijian.com/">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MASHIJIAN">
+    
+    <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="shortcut icon" href="favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "MASHIJIAN",
+      "alternateName": "马诗剑",
+      "url": "https://mashijian.com",
+      "image": "https://mashijian.com/profile-image.png",
+      "sameAs": [
+        "https://github.com/IIIIQIIII",
+        "https://www.linkedin.com/in/mashijian/",
+        "https://x.com/mashijiann",
+        "https://www.youtube.com/@mashijian",
+        "https://blog.mashijian.com"
+      ],
+      "jobTitle": "Software Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Independent"
+      },
+      "description": "Creator of innovative web projects and digital experiences"
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MASHIJIAN Portfolio",
+      "alternateName": "马诗剑作品集",
+      "url": "https://mashijian.com",
+      "description": "Personal portfolio and project showcase",
+      "inLanguage": ["en", "zh-CN"],
+      "author": {
+        "@type": "Person",
+        "name": "MASHIJIAN"
+      }
+    }
+    </script>
     <style>
         * {
             margin: 0;
@@ -15,14 +93,47 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: #000;
             overflow: hidden;
             height: 100vh;
+            position: relative;
+        }
+
+        /* Skip to content for accessibility */
+        .skip-to-content {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            background: #fff;
+            color: #000;
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 1000;
+            border-radius: 0 0 4px 0;
+        }
+
+        .skip-to-content:focus {
+            top: 0;
+        }
+
+        /* 首页容器 */
+        #homepage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #homepage.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
         /* MSJ 容器 */
@@ -89,29 +200,8 @@
                 0 0 60px rgba(0, 0, 255, 0.7);
         }
 
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .msj-letter {
-                font-size: 8rem;
-            }
-            .msj-container {
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .msj-letter {
-                font-size: 5rem;
-            }
-            .msj-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
-
-        /* OPEN 按钮样式 */
-        /* Language switcher */
-        .language-switcher {
+        /* Language switcher - 首页 */
+        .language-switcher-home {
             position: absolute;
             top: 30px;
             right: 30px;
@@ -146,6 +236,7 @@
             background: rgba(255, 255, 255, 1);
         }
 
+        /* OPEN 按钮 */
         .open-button-container {
             position: absolute;
             bottom: 60px;
@@ -172,6 +263,7 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.5);
             transition: all 0.3s ease;
             letter-spacing: 2px;
+            cursor: pointer;
         }
 
         .open-button:hover {
@@ -183,32 +275,328 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
 
-        .open-button:active {
-            transform: translateY(0);
-            box-shadow: 
-                0 4px 16px rgba(255, 255, 255, 0.1),
-                0 2px 8px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        /* 内容页面 */
+        #contentpage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            overflow-y: auto;
         }
 
-        /* 响应式按钮 */
+        #contentpage.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: transparent;
+            background: linear-gradient(135deg, 
+                #ff0000 0%, 
+                #ff6b6b 25%, 
+                #ffffff 50%, 
+                #6bb6ff 75%, 
+                #0000ff 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 5px;
+        }
+
+        /* 主内容区域 */
+        .main-content {
+            padding: 120px 40px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-wrapper {
+            flex: 1;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .page-subtitle {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 40px;
+        }
+
+        /* 卡片网格 */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+        }
+
+        /* 卡片样式 - HuggingFace 风格 */
+        .card {
+            padding: 28px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .card:hover::before {
+            opacity: 0.05;
+        }
+
+        /* 不同颜色的渐变 */
+        .card-purple {
+            background: linear-gradient(135deg, #e9d5ff 0%, #ffffff 100%);
+        }
+
+        .card-purple::before {
+            background: #a855f7;
+        }
+
+        .card-blue {
+            background: linear-gradient(135deg, #dbeafe 0%, #ffffff 100%);
+        }
+
+        .card-blue::before {
+            background: #3b82f6;
+        }
+
+        .card-icon {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .icon-purple { 
+            background-color: #a855f7;
+            box-shadow: 0 2px 8px rgba(168, 85, 247, 0.3);
+        }
+
+        .icon-blue { 
+            background-color: #3b82f6;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Footer 样式 */
+        .footer {
+            margin-top: auto;
+            padding: 40px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1120px;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.2) 15%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0.2) 85%,
+                rgba(255, 255, 255, 0) 100%
+            );
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .social-icon {
+            color: rgba(255, 255, 255, 0.6);
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+
+        .social-icon:hover {
+            color: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(255, 255, 255, 0.95);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-size: 0.9rem;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* 响应式设计 */
         @media (max-width: 768px) {
-            .open-button {
-                padding: 12px 30px;
-                font-size: 1rem;
+            .msj-letter {
+                font-size: 8rem;
             }
-            .open-button-container {
-                bottom: 40px;
+            .msj-container {
+                gap: 20px;
+            }
+            .navbar {
+                padding: 15px 20px;
+            }
+            .main-content {
+                padding: 100px 20px 40px;
+            }
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .card {
+                padding: 24px;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+            .social-icons {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
             }
         }
 
         @media (max-width: 480px) {
+            .msj-letter {
+                font-size: 5rem;
+            }
+            .msj-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
             .lang-btn {
                 padding: 6px 12px;
                 font-size: 0.8rem;
                 margin: 0 3px;
             }
-            .language-switcher {
+            .language-switcher-home {
                 top: 20px;
                 right: 20px;
             }
@@ -219,78 +607,243 @@
             .open-button-container {
                 bottom: 30px;
             }
+            .page-title {
+                font-size: 1.6rem;
+            }
+            .footer {
+                margin-top: 60px;
+            }
+            .social-icon {
+                width: 20px;
+                height: 20px;
+            }
+            .copyright {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- MSJ 字母 -->
-    <div class="msj-container">
-        <div class="msj-letter">
-            M
-            <div class="glass-effect"></div>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+    <!-- 首页 -->
+    <div id="homepage">
+        <!-- MSJ 字母 -->
+        <div class="msj-container" role="banner" aria-label="MASHIJIAN Logo">
+            <div class="msj-letter" aria-hidden="true">
+                M
+                <div class="glass-effect"></div>
+            </div>
+            <div class="msj-letter" aria-hidden="true">
+                S
+                <div class="glass-effect"></div>
+            </div>
+            <div class="msj-letter" aria-hidden="true">
+                J
+                <div class="glass-effect"></div>
+            </div>
         </div>
-        <div class="msj-letter">
-            S
-            <div class="glass-effect"></div>
+
+        <!-- Language Switcher -->
+        <div class="language-switcher-home" role="navigation" aria-label="Language selection">
+            <button class="lang-btn active" onclick="switchLanguage('en')" aria-label="Switch to English">EN</button>
+            <button class="lang-btn" onclick="switchLanguage('zh')" aria-label="切换到中文">中文</button>
         </div>
-        <div class="msj-letter">
-            J
-            <div class="glass-effect"></div>
+
+        <!-- OPEN 按钮 -->
+        <div class="open-button-container">
+            <button class="open-button" onclick="openContent()" aria-label="Open portfolio">
+                <span data-lang="en">OPEN</span>
+                <span data-lang="zh" style="display: none;">打开</span>
+            </button>
         </div>
     </div>
 
-    <!-- Language Switcher -->
-    <div class="language-switcher">
-        <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
-        <button class="lang-btn" onclick="switchLanguage('zh')">中文</button>
+    <!-- 内容页面 -->
+    <div id="contentpage">
+        <!-- 导航栏 -->
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="logo" onclick="goBack()" role="button" tabindex="0" aria-label="Return to home">
+                <div class="logo-text">MSJ</div>
+            </div>
+            
+            <div class="language-switcher" role="navigation" aria-label="Language selection">
+                <button class="lang-btn active" onclick="switchLanguage('en')" aria-label="Switch to English">EN</button>
+                <button class="lang-btn" onclick="switchLanguage('zh')" aria-label="切换到中文">中文</button>
+            </div>
+        </nav>
+
+        <!-- 主内容区域 -->
+        <main class="main-content" id="main-content">
+            <div class="content-wrapper">
+                <h1 class="page-title">
+                    <span data-lang="en">Projects</span>
+                    <span data-lang="zh" style="display: none;">项目</span>
+                </h1>
+                <p class="page-subtitle">
+                    <span data-lang="en">Explore my latest work and creations</span>
+                    <span data-lang="zh" style="display: none;">探索我的最新作品和创作</span>
+                </p>
+
+                <!-- 卡片网格 -->
+                <div class="cards-grid" role="list" aria-label="Projects">
+                    <!-- Blog 卡片 -->
+                    <a href="https://blog.mashijian.com" target="_blank" rel="noopener noreferrer" class="card card-purple" role="listitem">
+                        <div class="card-title">
+                            <span class="card-icon icon-purple" aria-hidden="true"></span>
+                            Blog
+                        </div>
+                        <p class="card-description">
+                            <span data-lang="en">MASHIJIAN Personal Blog Website</span>
+                            <span data-lang="zh" style="display: none;">马诗剑个人博客网站</span>
+                        </p>
+                    </a>
+
+                    <!-- Short Studio 卡片 -->
+                    <a href="https://short.mashijian.com" target="_blank" rel="noopener noreferrer" class="card card-blue" role="listitem">
+                        <div class="card-title">
+                            <span class="card-icon icon-blue" aria-hidden="true"></span>
+                            Short Studio
+                        </div>
+                        <p class="card-description">
+                            <span data-lang="en">Create compelling short dramas with professional tools</span>
+                            <span data-lang="zh" style="display: none;">使用专业工具创作引人入胜的短剧</span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <!-- 社交图标 -->
+                    <div class="social-icons">
+                        <!-- GitHub 图标 -->
+                        <a href="https://github.com/IIIIQIIII" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <!-- LinkedIn 图标 -->
+                        <a href="https://www.linkedin.com/in/mashijian/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <!-- X.com (Twitter) 图标 -->
+                        <a href="https://x.com/mashijiann" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="X (Twitter)">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <!-- YouTube 图标 -->
+                        <a href="https://www.youtube.com/@mashijian" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                        <!-- 邮箱图标 -->
+                        <button class="social-icon" onclick="copyEmail()" aria-label="Copy Email">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="copyright">
+                        MASHIJIAN
+                    </div>
+                </div>
+            </footer>
+        </main>
     </div>
 
-    <!-- OPEN 按钮 -->
-    <div class="open-button-container">
-        <a href="function.html" class="open-button">
-            <span data-lang="en">OPEN</span>
-            <span data-lang="zh" style="display: none;">打开</span>
-        </a>
+    <!-- Toast notification -->
+    <div id="toast" class="toast">
+        <span data-lang="en">Email copied to clipboard!</span>
+        <span data-lang="zh" style="display: none;">邮箱已复制到剪贴板！</span>
     </div>
 
     <script>
+        // 语言切换功能
         function switchLanguage(lang) {
-            // Update active button
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Update HTML lang attribute
-            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-            
-            // Update all translatable elements
-            document.querySelectorAll('[data-lang]').forEach(element => {
-                element.style.display = element.getAttribute('data-lang') === lang ? 'inline' : 'none';
-            });
-            
-            // Store language preference
-            localStorage.setItem('preferredLanguage', lang);
-        }
-        
-        // Load saved language preference
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-            const langButtons = document.querySelectorAll('.lang-btn');
-            
-            langButtons.forEach(btn => {
-                btn.classList.remove('active');
-                if ((btn.textContent === 'EN' && savedLang === 'en') || 
-                    (btn.textContent === '中文' && savedLang === 'zh')) {
+                if ((btn.textContent === 'EN' && lang === 'en') || 
+                    (btn.textContent === '中文' && lang === 'zh')) {
                     btn.classList.add('active');
                 }
             });
             
-            document.documentElement.lang = savedLang === 'zh' ? 'zh-CN' : 'en';
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+            
             document.querySelectorAll('[data-lang]').forEach(element => {
-                element.style.display = element.getAttribute('data-lang') === savedLang ? 'inline' : 'none';
+                element.style.display = element.getAttribute('data-lang') === lang ? 'inline' : 'none';
             });
+
+            localStorage.setItem('preferredLanguage', lang);
+        }
+        
+        // 页面加载时应用保存的语言
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            switchLanguage(savedLang);
         });
+        
+        // 打开内容页面
+        function openContent() {
+            document.getElementById('homepage').classList.add('hidden');
+            document.getElementById('contentpage').classList.add('visible');
+        }
+        
+        // 返回首页
+        function goBack() {
+            document.getElementById('contentpage').classList.remove('visible');
+            document.getElementById('homepage').classList.remove('hidden');
+        }
+
+        // 复制邮箱功能
+        function copyEmail() {
+            const email = 'contact@mashijian.com';
+            
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(email).then(() => {
+                    showToast();
+                }).catch(err => {
+                    console.error('Failed to copy email:', err);
+                    fallbackCopyEmail(email);
+                });
+            } else {
+                fallbackCopyEmail(email);
+            }
+        }
+
+        // Fallback copy method
+        function fallbackCopyEmail(email) {
+            const textArea = document.createElement('textarea');
+            textArea.value = email;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Fallback copy failed:', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // Show toast notification
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
     </script>
 </body>
 </html>
