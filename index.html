@@ -423,6 +423,14 @@
             background: #3b82f6;
         }
 
+        .card-green {
+            background: linear-gradient(135deg, #d1fae5 0%, #ffffff 100%);
+        }
+
+        .card-green::before {
+            background: #10b981;
+        }
+
         .card-icon {
             width: 10px;
             height: 10px;
@@ -439,6 +447,11 @@
         .icon-blue { 
             background-color: #3b82f6;
             box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        }
+
+        .icon-green { 
+            background-color: #10b981;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
         }
 
         .card-title {
@@ -458,7 +471,7 @@
 
         /* Footer 样式 */
         .footer {
-            margin-top: auto;
+            margin-top: 60px;
             padding: 40px 0 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.15);
             position: relative;
@@ -468,18 +481,12 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 95%;
-            max-width: 1120px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            max-width: 900px;
             height: 1px;
-            background: linear-gradient(90deg, 
-                rgba(255, 255, 255, 0) 0%, 
-                rgba(255, 255, 255, 0.2) 15%,
-                rgba(255, 255, 255, 0.4) 50%,
-                rgba(255, 255, 255, 0.2) 85%,
-                rgba(255, 255, 255, 0) 100%
-            );
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .footer-content {
@@ -688,10 +695,22 @@
 
                 <!-- 卡片网格 -->
                 <div class="cards-grid" role="list" aria-label="Projects">
-                    <!-- Blog 卡片 -->
-                    <a href="https://blog.mashijian.com" target="_blank" rel="noopener noreferrer" class="card card-purple" role="listitem">
+                    <!-- CV 卡片 -->
+                    <a href="https://cv.mashijian.com" target="_blank" rel="noopener noreferrer" class="card card-green" role="listitem">
                         <div class="card-title">
-                            <span class="card-icon icon-purple" aria-hidden="true"></span>
+                            <span class="card-icon icon-green" aria-hidden="true"></span>
+                            CV
+                        </div>
+                        <p class="card-description">
+                            <span data-lang="en">MASHIJIAN Professional Resume</span>
+                            <span data-lang="zh" style="display: none;">马诗剑个人简历</span>
+                        </p>
+                    </a>
+
+                    <!-- Blog 卡片 -->
+                    <a href="https://blog.mashijian.com" target="_blank" rel="noopener noreferrer" class="card card-blue" role="listitem">
+                        <div class="card-title">
+                            <span class="card-icon icon-blue" aria-hidden="true"></span>
                             Blog
                         </div>
                         <p class="card-description">
@@ -701,13 +720,13 @@
                     </a>
 
                     <!-- Short Studio 卡片 -->
-                    <a href="https://short.mashijian.com" target="_blank" rel="noopener noreferrer" class="card card-blue" role="listitem">
+                    <a href="https://short.mashijian.com" target="_blank" rel="noopener noreferrer" class="card card-purple" role="listitem">
                         <div class="card-title">
-                            <span class="card-icon icon-blue" aria-hidden="true"></span>
+                            <span class="card-icon icon-purple" aria-hidden="true"></span>
                             Short Studio
                         </div>
                         <p class="card-description">
-                            <span data-lang="en">Create compelling short dramas with professional tools</span>
+                            <span data-lang="en">Create compelling short dramas</span>
                             <span data-lang="zh" style="display: none;">使用专业工具创作引人入胜的短剧</span>
                         </p>
                     </a>
@@ -766,6 +785,35 @@
     </div>
 
     <script>
+        // 路由管理 - 使用hash路由
+        function navigate(hash) {
+            window.location.hash = hash;
+        }
+
+        function updateView() {
+            const hash = window.location.hash;
+            const homepage = document.getElementById('homepage');
+            const contentpage = document.getElementById('contentpage');
+
+            if (hash === '#projects') {
+                homepage.classList.add('hidden');
+                contentpage.classList.add('visible');
+            } else {
+                homepage.classList.remove('hidden');
+                contentpage.classList.remove('visible');
+            }
+        }
+
+        // 监听hash变化
+        window.addEventListener('hashchange', updateView);
+
+        // 页面加载时检查路由
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            switchLanguage(savedLang);
+            updateView();
+        });
+
         // 语言切换功能
         function switchLanguage(lang) {
             document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -785,22 +833,14 @@
             localStorage.setItem('preferredLanguage', lang);
         }
         
-        // 页面加载时应用保存的语言
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-            switchLanguage(savedLang);
-        });
-        
         // 打开内容页面
         function openContent() {
-            document.getElementById('homepage').classList.add('hidden');
-            document.getElementById('contentpage').classList.add('visible');
+            navigate('#projects');
         }
         
         // 返回首页
         function goBack() {
-            document.getElementById('contentpage').classList.remove('visible');
-            document.getElementById('homepage').classList.remove('hidden');
+            navigate('');
         }
 
         // 复制邮箱功能
