@@ -431,6 +431,14 @@
             background: #10b981;
         }
 
+        .card-gold {
+            background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%);
+        }
+
+        .card-gold::before {
+            background: #d4a054;
+        }
+
         .card-icon {
             width: 10px;
             height: 10px;
@@ -449,9 +457,14 @@
             box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
         }
 
-        .icon-green { 
+        .icon-green {
             background-color: #10b981;
             box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+
+        .icon-gold {
+            background-color: #d4a054;
+            box-shadow: 0 2px 8px rgba(212, 160, 84, 0.3);
         }
 
         .card-title {
@@ -728,6 +741,18 @@
                         <p class="card-description">
                             <span data-lang="en">Create compelling short dramas</span>
                             <span data-lang="zh" style="display: none;">使用专业工具创作引人入胜的短剧</span>
+                        </p>
+                    </a>
+
+                    <!-- APP 卡片 -->
+                    <a href="https://app.mashijian.com" target="_blank" rel="noopener noreferrer" class="card card-gold" role="listitem">
+                        <div class="card-title">
+                            <span class="card-icon icon-gold" aria-hidden="true"></span>
+                            APP
+                        </div>
+                        <p class="card-description">
+                            <span data-lang="en">Showcase of web applications</span>
+                            <span data-lang="zh" style="display: none;">网页应用展示</span>
                         </p>
                     </a>
                 </div>
